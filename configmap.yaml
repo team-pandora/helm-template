@@ -1,0 +1,28 @@
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-template
+data:
+  GIN_MODE: release
+  PORT: "8000"
+  MONGO_URI: mongodb://localhost:27017/test-db
+  MONGO_FEATURE_COLLECTION_NAME: features
+  MONGO_CONNECTION_TIMEOUT: 2s
+  CLIENT_PING_TIMEOUT: 2s
+  CREATE_INDEX_TIMEOUT: 2s
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ts-template
+data:
+  PORT: "8000"
+  MONGO_URI: mongodb://localhost
+  MONGO_FEATURE_COLLECTION_NAME: feature
+  RABBIT_URI: amqp://localhost
+
+  

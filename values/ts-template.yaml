@@ -1,0 +1,27 @@
+name: "ts-template"
+replicaCount: 1
+
+images:
+  PullSecrets: 
+    name: drive-falcon-pull-secret
+  repository: ghcr.io/team-pandora/ts-template
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  ports:
+  - name: ts-template
+    port: 80
+    targetPort: 8000
+
+config:
+  configmaps: [ts-template]
+
+ingress:
+  enabled: true
+  hosts:
+  - host: ts-config.team-pandora.com
+    paths:
+      - path: /
+        service: ts-template
+        port: "80"

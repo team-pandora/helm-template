@@ -1,0 +1,27 @@
+name: "go-template"
+replicaCount: 1
+
+images:
+  PullSecrets: 
+    name: drive-falcon-pull-secret
+  repository: ghcr.io/team-pandora/go-template
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  ports:
+  - name: go-template
+    port: 80
+    targetPort: 8000
+
+config:
+  configmaps: [go-template]
+
+ingress:
+  enabled: true
+  hosts:
+  - host: ts-config.team-pandora.com
+    paths:
+      - path: /
+        service: go-template
+        port: "80"
